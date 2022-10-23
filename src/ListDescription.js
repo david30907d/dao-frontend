@@ -1,8 +1,46 @@
 import React from 'react';
-
+import { useEffect, useState } from "react";
+const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
+const web3 = createAlchemyWeb3("https://eth-goerli.g.alchemy.com/v2/5COxhE7z4DDwBECWZfoG2T0goJ9awmmC");
+const ticketContract = new web3.eth.Contract(
+  require("./Ticket.json").abi,
+  "0x02BF9031c93DE680e83aB66Ae6F38efFcB79719b"
+);
 export default function ListDescription() {
-  const contributors = ["Akira", "Wade", "YaCheng", "Pierce", "David Jr."]
+  const contributors = ["Akira", "Wade", "YaCheng", "Pierce", "David Jr.", "Shawn"]
   const specialSupport = ['Aaron']
+  const [usdTicketPrice, setUsdTicketPrice] = useState("");
+  const [ohmTicketPrice, setOhmTicketPrice] = useState("");
+  let account;
+
+  web3.eth.getAccounts(function(err, accounts) {
+    if (err != null) {
+      alert("Error retrieving accounts.");
+      return;
+    }
+    if (accounts.length == 0) {
+      alert("No account found! Make sure the Ethereum client is configured properly.");
+      return;
+    }
+    account = accounts[0];
+    console.log('Account: ' + account);
+    web3.eth.defaultAccount = account;
+  });
+  async function requestTicketPrice() {
+    let tmpTicketPrice = await ticketContract.methods.usdTicketPrices("2022-in-person").call();
+    setUsdTicketPrice(tmpTicketPrice);
+    let tmpOhmTicketPrice = await ticketContract.methods.ohmTicketPrices("2022-in-person").call();
+    setOhmTicketPrice(tmpOhmTicketPrice);
+  }
+  useEffect(requestTicketPrice, []);
+  async function buyTicket(){
+    console.log('!!!!!!')
+    ticketContract.methods.buyTicket("dai", "2022-in-person", true).send( {from: account}).then((tx) => {
+      console.log("Transaction: ", tx);
+    });  
+    // await ticketContract.methods.buyTicket("dai", "2022-in-person", true);
+    console.log('!!!!ned!!')
+  }
   return (
     <div className="App">
       <h1 style={{ color: 'green' }}>Consensus Conf 2022</h1>
@@ -31,22 +69,22 @@ export default function ListDescription() {
         <h2>售票 - Ticket Office：</h2>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/14483/small/token_OHM_%281%29.png?1628311611" alt="BigCo Inc. logo" width="20" height="20" /> OHM</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
-          <li>一般票：OHM xxx</li>
+          <li><button onClick={buyTicket}>一般票：OHM {ohmTicketPrice}</button></li>
           <li>講者票：OHM yyy</li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/13422/small/frax_logo.png?1608476506" alt="BigCo Inc. logo" width="20" height="20" /> FRAX</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
-          <li>一般票：$ xxx</li>
+          <li><button onClick={buyTicket}>一般票：$ {usdTicketPrice}</button></li>
           <li>講者票：$ yyy</li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/9956/small/4943.png?1636636734" alt="BigCo Inc. logo" width="20" height="20" /> DAI</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
-          <li>一般票：$ xxx</li>
+          <li>一般票：$ {usdTicketPrice}</li>
           <li>講者票：$ yyy</li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389" alt="BigCo Inc. logo" width="20" height="20" /> USDC</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
-          <li>一般票：$ xxx</li>
+          <li>一般票：$ {usdTicketPrice}</li>
           <li>講者票：$ yyy</li>
         </ol>
         <h2>徵稿 - Call for Papers</h2>
