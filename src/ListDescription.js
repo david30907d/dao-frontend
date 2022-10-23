@@ -1,38 +1,45 @@
 import React from 'react';
 import { useEffect, useState } from "react";
+import { getCurrentWalletConnected } from "./util/interact.js";
+
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3("https://eth-goerli.g.alchemy.com/v2/5COxhE7z4DDwBECWZfoG2T0goJ9awmmC");
 const ticketContract = new web3.eth.Contract(
   require("./Ticket.json").abi,
   "0x02BF9031c93DE680e83aB66Ae6F38efFcB79719b"
 );
+const inPersonTicketNFT = new web3.eth.Contract(
+  require("./InPersonTicketNFT.json").abi,
+  "0x1dd2fa9af5d25c5d99dfd9c39caa0c180c913266"
+);
+
 export default function ListDescription() {
   const contributors = ["Akira", "Wade", "YaCheng", "Pierce", "David Jr.", "Shawn"]
   const specialSupport = ['Aaron']
   const [usdTicketPrice, setUsdTicketPrice] = useState("");
+  const [usdContributorTicketPrice, setUsdContributorTicketPrice] = useState("");
   const [ohmTicketPrice, setOhmTicketPrice] = useState("");
+  const [ohmContributorTicketPrice, setOhmContributorTicketPrice] = useState("");
+  const [inPersonTicketNFTs, setInPersonTicketNFTs] = useState("");
+  const [address, setAddress] = useState("");
   let account;
 
-  web3.eth.getAccounts(function(err, accounts) {
-    if (err != null) {
-      alert("Error retrieving accounts.");
-      return;
-    }
-    if (accounts.length == 0) {
-      alert("No account found! Make sure the Ethereum client is configured properly.");
-      return;
-    }
-    account = accounts[0];
-    console.log('Account: ' + account);
-    web3.eth.defaultAccount = account;
-  });
   async function requestTicketPrice() {
-    let tmpTicketPrice = await ticketContract.methods.usdTicketPrices("2022-in-person").call();
-    setUsdTicketPrice(tmpTicketPrice);
-    let tmpOhmTicketPrice = await ticketContract.methods.ohmTicketPrices("2022-in-person").call();
-    setOhmTicketPrice(tmpOhmTicketPrice);
+    setUsdTicketPrice(await ticketContract.methods.usdTicketPrices("2022-in-person").call());
+    setUsdContributorTicketPrice(await ticketContract.methods.usdTicketPrices("2022-in-person-contributor").call());
+    setOhmTicketPrice(await ticketContract.methods.ohmTicketPrices("2022-in-person").call());
+    setOhmContributorTicketPrice(await ticketContract.methods.ohmTicketPrices("2022-in-person-contributor").call());
+  }
+  async function requestUserInPersonTicketNFT() {
+    const { address } = await getCurrentWalletConnected();
+    setAddress(address);
+    // TODO: why there's no Transfer event emitted from NFT contract?
+    let events = await inPersonTicketNFT.getPastEvents("Transfer");
+    console.log(events);
+    setInPersonTicketNFTs(await inPersonTicketNFT.methods.balanceOf(address).call());
   }
   useEffect(requestTicketPrice, []);
+  useEffect(requestUserInPersonTicketNFT, []);
   async function buyTicket(){
     console.log('!!!!!!')
     ticketContract.methods.buyTicket("dai", "2022-in-person", true).send( {from: account}).then((tx) => {
@@ -53,7 +60,7 @@ export default function ListDescription() {
         <h2>活動時間與地點 - When and Where</h2>
         <ol style={{ listStyleType: 'upper-alpha' }}>
           <li>&#9200; 時間 - 12/10 9:00 ~ 17:00</li>
-          <li>&#127758; 地點 - AppWorks School <a href='https://goo.gl/maps/gNvPm7LuzScsxQEh8'>100台北市中正區仁愛路二段99號</a></li>
+          <li>&#127758; 地點 - AppWorks School 4F <a href='https://goo.gl/maps/gNvPm7LuzScsxQEh8'>100台北市中正區仁愛路二段99號 4F</a></li>
           <li>&#127836; 餐點 - 供午餐 (free lunch)</li>
         </ol>
         <h2>議程 - Program</h2>
@@ -70,30 +77,29 @@ export default function ListDescription() {
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/14483/small/token_OHM_%281%29.png?1628311611" alt="BigCo Inc. logo" width="20" height="20" /> OHM</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
           <li><button onClick={buyTicket}>一般票：OHM {ohmTicketPrice}</button></li>
-          <li>講者票：OHM yyy</li>
+          <li><button onClick={buyTicket}>貢獻票：OHM {ohmContributorTicketPrice}</button></li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/13422/small/frax_logo.png?1608476506" alt="BigCo Inc. logo" width="20" height="20" /> FRAX</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
           <li><button onClick={buyTicket}>一般票：$ {usdTicketPrice}</button></li>
-          <li>講者票：$ yyy</li>
+          <li><button onClick={buyTicket}>貢獻票：$ {usdContributorTicketPrice}</button></li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/9956/small/4943.png?1636636734" alt="BigCo Inc. logo" width="20" height="20" /> DAI</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
-          <li>一般票：$ {usdTicketPrice}</li>
-          <li>講者票：$ yyy</li>
+        <li><button onClick={buyTicket}>一般票：$ {usdTicketPrice}</button></li>
+        <li><button onClick={buyTicket}>貢獻票：$ {usdContributorTicketPrice}</button></li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389" alt="BigCo Inc. logo" width="20" height="20" /> USDC</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
-          <li>一般票：$ {usdTicketPrice}</li>
-          <li>講者票：$ yyy</li>
+          <li><button onClick={buyTicket}>一般票：$ {usdTicketPrice}</button></li>
+          <li><button onClick={buyTicket}>貢獻票：$ {usdContributorTicketPrice}</button></li>
         </ol>
         <h2>徵稿 - Call for Papers</h2>
         <a href='https://docs.google.com/forms/d/e/1FAIpQLSe9-BdV8BL1bG0G6uoopi_ftoFj55jL5OFRj5ZfIkXVjObGiw/viewform'>Google Form: Call for Papers</a>
         <h2>Join DAO!</h2>
         <a href="https://hackmd.io/FJlahwQTTUWahfzSWDsdaw?view#%E5%8A%A0%E5%85%A5-DAO-%E4%B9%8B%E5%89%8D%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%95%8F%E8%87%AA%E5%B7%B1-4-%E5%80%8B%E5%95%8F%E9%A1%8C">Click Here to Join DAO!</a>
         <h2>我的票券 - Your Tickets</h2>        
-        <p>Placeholder: would show your NFT ticket here for entrance!</p>
-        <p>show his/her tokenID!</p>
+        <p>{address} 買了 {inPersonTicketNFTs} 張票！</p>
         <h2>工作人員 - Staff</h2>
         <h5>contributors: {contributors.sort(() => Math.random() - 0.5).toString()}</h5>
         <h5>special support: {specialSupport.sort(() => Math.random() - 0.5).toString()}</h5>
