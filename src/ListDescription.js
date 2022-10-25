@@ -50,7 +50,7 @@ export default function ListDescription() {
   }
   return (
     <div className="App">
-      <h1 style={{ color: 'green' }}>Consensus Conf 2022</h1>
+      <h1 style={{ color: 'green' }}>Consensus Conf 2022(WIP, 還在 testnet)</h1>
       <h2>使命與願景 - Mission Statement</h2>
       <div style={{ display: 'inline', marginRight: '50px' }}>
         <h3 style={{ color: 'red' }}>我們將在 2030 年，做到「台灣區塊鏈的龍頭社群」，因為「現代社會對區塊鏈有很多誤解，我們希望這個 conf/DAO 能不分職業、種族、性別等等，平等地去普及各類區塊鏈知識」。</h3>
