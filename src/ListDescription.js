@@ -40,11 +40,11 @@ export default function ListDescription() {
   }
   useEffect(requestTicketPrice, []);
   useEffect(requestUserInPersonTicketNFT, []);
-  async function buyTicket(){
+  async function buyTicket() {
     console.log('!!!!!!')
-    ticketContract.methods.buyTicket("dai", "2022-in-person", true).send( {from: account}).then((tx) => {
+    ticketContract.methods.buyTicket("dai", "2022-in-person", true).send({ from: account }).then((tx) => {
       console.log("Transaction: ", tx);
-    });  
+    });
     // await ticketContract.methods.buyTicket("dai", "2022-in-person", true);
     console.log('!!!!ned!!')
   }
@@ -63,6 +63,8 @@ export default function ListDescription() {
           <li>&#127758; 地點 - AppWorks School 4F <a href='https://goo.gl/maps/gNvPm7LuzScsxQEh8'>100台北市中正區仁愛路二段99號 4F</a></li>
           <li>&#127836; 餐點 - 供午餐 (free lunch)</li>
         </ol>
+        <h2>徵稿 - Call for Papers</h2>
+        <a href='https://docs.google.com/forms/d/e/1FAIpQLSe9-BdV8BL1bG0G6uoopi_ftoFj55jL5OFRj5ZfIkXVjObGiw/viewform'>Google Form: Call for Papers</a>
         <h2>議程 - Program</h2>
         <ol style={{ listStyleType: 'upper-alpha' }}>
           <li>9:00-9:30 「主題」 by XXX</li>
@@ -86,19 +88,17 @@ export default function ListDescription() {
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/9956/small/4943.png?1636636734" alt="BigCo Inc. logo" width="20" height="20" /> DAI</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
-        <li><button onClick={buyTicket}>一般票：$ {usdTicketPrice}</button></li>
-        <li><button onClick={buyTicket}>貢獻票：$ {usdContributorTicketPrice}</button></li>
+          <li><button onClick={buyTicket}>一般票：$ {usdTicketPrice}</button></li>
+          <li><button onClick={buyTicket}>貢獻票：$ {usdContributorTicketPrice}</button></li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389" alt="BigCo Inc. logo" width="20" height="20" /> USDC</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
           <li><button onClick={buyTicket}>一般票：$ {usdTicketPrice}</button></li>
           <li><button onClick={buyTicket}>貢獻票：$ {usdContributorTicketPrice}</button></li>
         </ol>
-        <h2>徵稿 - Call for Papers</h2>
-        <a href='https://docs.google.com/forms/d/e/1FAIpQLSe9-BdV8BL1bG0G6uoopi_ftoFj55jL5OFRj5ZfIkXVjObGiw/viewform'>Google Form: Call for Papers</a>
         <h2>Join DAO!</h2>
         <a href="https://hackmd.io/FJlahwQTTUWahfzSWDsdaw?view#%E5%8A%A0%E5%85%A5-DAO-%E4%B9%8B%E5%89%8D%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%95%8F%E8%87%AA%E5%B7%B1-4-%E5%80%8B%E5%95%8F%E9%A1%8C">Click Here to Join DAO!</a>
-        <h2>我的票券 - Your Tickets</h2>        
+        <h2>我的票券 - Your Tickets</h2>
         <p>{address} 買了 {inPersonTicketNFTs} 張票！</p>
         <h2>工作人員 - Staff</h2>
         <h5>contributors: {contributors.sort(() => Math.random() - 0.5).toString()}</h5>
