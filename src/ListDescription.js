@@ -5,14 +5,14 @@ const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3("https://opt-goerli.g.alchemy.com/v2/9TWpT42dQ5U9KsjrptwNQ2g7pbQBSpQq");
 const BN = web3.utils.BN;
 const DECIMALS = new BN('1000000000000000000');
-const addrOfTicketContract = '0x8Bc6605fF431157CFFb2922dEe73b43553dA93a4';
+const addrOfTicketContract = '0xc559af4C9d97B397bd3329E081B2eb39C6bB401C';
 const ticketContract = new web3.eth.Contract(
   require("./Ticket.json").abi,
   addrOfTicketContract
 );
 const inPersonTicketNFT = new web3.eth.Contract(
   require("./InPersonTicketNFT.json").abi,
-  "0x003f760F6f7491a6E8C28828802146a648636a6F"
+  "0x2C3a0735A686cD8DB0c862B3dE13e61600201e5A"
 );
 const GOHM = new web3.eth.Contract(
   require("./IERC20.json").abi,
@@ -63,7 +63,6 @@ export default function ListDescription() {
         .buyTicket(tokenName, ticketName, true)
         .encodeABI(),
     };
-    console.log('!!!!!!')
     try {
       const txHash = await window.ethereum.request({
         method: "eth_sendTransaction",
@@ -81,7 +80,6 @@ export default function ListDescription() {
         status: "😥 Something went wrong: " + error.message,
       });
     }
-    console.log('!!!!ned!!')
   }
 
   const approve = async (tokenName) => {
@@ -98,14 +96,12 @@ export default function ListDescription() {
       throw `Invalid token ${tokenName}`
     }
     const transactionParameters = {
-      to: addrOfTicketContract, // Required except during contract publications.
+      to: tokenContract._address, // Required except during contract publications.
       from: window.ethereum.selectedAddress, // must match user's active address.
       data: tokenContract.methods
-        .approve(addrOfTicketContract, 100 )
-        // .approve(addrOfTicketContract, DECIMALS.mul(new BN(100)) )
+        .approve(addrOfTicketContract, DECIMALS.mul(new BN(100)) )
         .encodeABI(),
     };
-    console.log('!!!!!!')
     try {
       const txHash = await window.ethereum.request({
         method: "eth_sendTransaction",
@@ -123,9 +119,6 @@ export default function ListDescription() {
         status: "😥 Something went wrong: " + error.message,
       });
     }
-    console.log('!!!!ned!!')
-
-    
   }
   return (
     <div className="App">
