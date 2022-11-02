@@ -1,52 +1,131 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 import { getCurrentWalletConnected } from "./util/interact.js";
-
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-const web3 = createAlchemyWeb3("https://eth-goerli.g.alchemy.com/v2/5COxhE7z4DDwBECWZfoG2T0goJ9awmmC");
+const web3 = createAlchemyWeb3("https://opt-goerli.g.alchemy.com/v2/9TWpT42dQ5U9KsjrptwNQ2g7pbQBSpQq");
+const BN = web3.utils.BN;
+const DECIMALS = new BN('1000000000000000000');
+const addrOfTicketContract = '0x8Bc6605fF431157CFFb2922dEe73b43553dA93a4';
 const ticketContract = new web3.eth.Contract(
   require("./Ticket.json").abi,
-  "0x02BF9031c93DE680e83aB66Ae6F38efFcB79719b"
+  addrOfTicketContract
 );
 const inPersonTicketNFT = new web3.eth.Contract(
   require("./InPersonTicketNFT.json").abi,
-  "0x1dd2fa9af5d25c5d99dfd9c39caa0c180c913266"
+  "0x003f760F6f7491a6E8C28828802146a648636a6F"
 );
-
+const GOHM = new web3.eth.Contract(
+  require("./IERC20.json").abi,
+  "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
+)
+const FRAX = new web3.eth.Contract(
+  require("./IERC20.json").abi,
+  "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
+)
+const DAI = new web3.eth.Contract(
+  require("./IERC20.json").abi,
+  "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
+)
+const USDC = new web3.eth.Contract(
+  require("./IERC20.json").abi,
+  "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
+)
 export default function ListDescription() {
   const contributors = ["Akira", "Wade", "YaCheng", "Pierce", "David Jr.", "Shawn"]
   const specialSupport = ['Aaron']
   const [usdTicketPrice, setUsdTicketPrice] = useState("");
   const [usdContributorTicketPrice, setUsdContributorTicketPrice] = useState("");
-  const [ohmTicketPrice, setOhmTicketPrice] = useState("");
-  const [ohmContributorTicketPrice, setOhmContributorTicketPrice] = useState("");
+  const [gohmTicketPrice, setGohmTicketPrice] = useState("");
+  const [gohmContributorTicketPrice, setGohmContributorTicketPrice] = useState("");
   const [inPersonTicketNFTs, setInPersonTicketNFTs] = useState("");
   const [address, setAddress] = useState("");
-  let account;
 
   async function requestTicketPrice() {
     setUsdTicketPrice(await ticketContract.methods.usdTicketPrices("2022-in-person").call());
     setUsdContributorTicketPrice(await ticketContract.methods.usdTicketPrices("2022-in-person-contributor").call());
-    setOhmTicketPrice(await ticketContract.methods.ohmTicketPrices("2022-in-person").call());
-    setOhmContributorTicketPrice(await ticketContract.methods.ohmTicketPrices("2022-in-person-contributor").call());
+    setGohmTicketPrice(await ticketContract.methods.gohmTicketPrices("2022-in-person").call());
+    setGohmContributorTicketPrice(await ticketContract.methods.gohmTicketPrices("2022-in-person-contributor").call());
   }
   async function requestUserInPersonTicketNFT() {
     const { address } = await getCurrentWalletConnected();
     setAddress(address);
     // TODO: why there's no Transfer event emitted from NFT contract?
     let events = await inPersonTicketNFT.getPastEvents("Transfer");
-    console.log(events);
     setInPersonTicketNFTs(await inPersonTicketNFT.methods.balanceOf(address).call());
   }
   useEffect(requestTicketPrice, []);
   useEffect(requestUserInPersonTicketNFT, []);
-  async function buyTicket() {
+  async function buyTicket(tokenName, ticketName){
+    const transactionParameters = {
+      to: addrOfTicketContract, // Required except during contract publications.
+      from: window.ethereum.selectedAddress, // must match user's active address.
+      data: ticketContract.methods
+        .buyTicket(tokenName, ticketName, true)
+        .encodeABI(),
+    };
     console.log('!!!!!!')
-    ticketContract.methods.buyTicket("dai", "2022-in-person", true).send({ from: account }).then((tx) => {
-      console.log("Transaction: ", tx);
-    });
-    // await ticketContract.methods.buyTicket("dai", "2022-in-person", true);
+    try {
+      const txHash = await window.ethereum.request({
+        method: "eth_sendTransaction",
+        params: [transactionParameters],
+      });
+      console.log({
+        success: true,
+        status:
+          "✅ Check out your transaction on Etherscan: https://ropsten.etherscan.io/tx/" +
+          txHash,
+      });
+    } catch (error) {
+      console.log({
+        success: false,
+        status: "😥 Something went wrong: " + error.message,
+      });
+    }
     console.log('!!!!ned!!')
+  }
+
+  const approve = async (tokenName) => {
+    let tokenContract;
+    if (tokenName == 'gohm') {
+      tokenContract = GOHM;
+    } else if (tokenName == 'frax') {
+      tokenContract = FRAX;
+    } else if (tokenName == 'dai') {
+      tokenContract = DAI;
+    } else if (tokenName == 'usdc') {
+      tokenContract = USDC;
+    } else {
+      throw `Invalid token ${tokenName}`
+    }
+    const transactionParameters = {
+      to: addrOfTicketContract, // Required except during contract publications.
+      from: window.ethereum.selectedAddress, // must match user's active address.
+      data: tokenContract.methods
+        .approve(addrOfTicketContract, 100 )
+        // .approve(addrOfTicketContract, DECIMALS.mul(new BN(100)) )
+        .encodeABI(),
+    };
+    console.log('!!!!!!')
+    try {
+      const txHash = await window.ethereum.request({
+        method: "eth_sendTransaction",
+        params: [transactionParameters],
+      });
+      console.log({
+        success: true,
+        status:
+          "✅ Check out your transaction on Etherscan: https://ropsten.etherscan.io/tx/" +
+          txHash,
+      });
+    } catch (error) {
+      console.log({
+        success: false,
+        status: "😥 Something went wrong: " + error.message,
+      });
+    }
+    console.log('!!!!ned!!')
+
+    
   }
   return (
     <div className="App">
@@ -76,29 +155,33 @@ export default function ListDescription() {
           <p>...</p>
         </ol>
         <h2>售票 - Ticket Office：</h2>
-        <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/14483/small/token_OHM_%281%29.png?1628311611" alt="BigCo Inc. logo" width="20" height="20" /> OHM</h5>
+        <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/21129/small/token_wsOHM_logo.png?1638764900" alt="BigCo Inc. logo" width="20" height="20" /> GOHM</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
-          <li><button onClick={buyTicket}>一般票：OHM {ohmTicketPrice}</button></li>
-          <li><button onClick={buyTicket}>貢獻票：OHM {ohmContributorTicketPrice}</button></li>
+          <li><button onClick={() => approve("gohm")}>Approve</button></li>
+          <li><button onClick={() => buyTicket("gohm", "2022-in-person")}>一般票：GOHM {gohmTicketPrice}</button></li>
+          <li><button onClick={() => buyTicket("gohm", "2022-in-person-contributor")}>貢獻票：GOHM {gohmContributorTicketPrice}</button></li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/13422/small/frax_logo.png?1608476506" alt="BigCo Inc. logo" width="20" height="20" /> FRAX</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
-          <li><button onClick={buyTicket}>一般票：$ {usdTicketPrice}</button></li>
-          <li><button onClick={buyTicket}>貢獻票：$ {usdContributorTicketPrice}</button></li>
+          <li><button onClick={() => approve("frax")}>Approve</button></li>
+          <li><button onClick={() => buyTicket("frax", "2022-in-person")}>一般票：$ {usdTicketPrice}</button></li>
+          <li><button onClick={() => buyTicket("frax", "2022-in-person-contributor")}>貢獻票：$ {usdContributorTicketPrice}</button></li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/9956/small/4943.png?1636636734" alt="BigCo Inc. logo" width="20" height="20" /> DAI</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
-          <li><button onClick={buyTicket}>一般票：$ {usdTicketPrice}</button></li>
-          <li><button onClick={buyTicket}>貢獻票：$ {usdContributorTicketPrice}</button></li>
+          <li><button onClick={() => approve("dai")} >Approve</button></li>
+        <li><button onClick={() => buyTicket("dai", "2022-in-person")}>一般票：$ {usdTicketPrice}</button></li>
+        <li><button onClick={() => buyTicket("dai", "2022-in-person-contributor")}>貢獻票：$ {usdContributorTicketPrice}</button></li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389" alt="BigCo Inc. logo" width="20" height="20" /> USDC</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
-          <li><button onClick={buyTicket}>一般票：$ {usdTicketPrice}</button></li>
-          <li><button onClick={buyTicket}>貢獻票：$ {usdContributorTicketPrice}</button></li>
+          <li><button onClick={() => approve("usdc")} >Approve</button></li>
+          <li><button onClick={() => buyTicket("usdc", "2022-in-person")}>一般票：$ {usdTicketPrice}</button></li>
+          <li><button onClick={() => buyTicket("usdc", "2022-in-person-contributor")}>貢獻票：$ {usdContributorTicketPrice}</button></li>
         </ol>
         <h2>Join DAO!</h2>
         <a href="https://hackmd.io/FJlahwQTTUWahfzSWDsdaw?view#%E5%8A%A0%E5%85%A5-DAO-%E4%B9%8B%E5%89%8D%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%95%8F%E8%87%AA%E5%B7%B1-4-%E5%80%8B%E5%95%8F%E9%A1%8C">Click Here to Join DAO!</a>
-        <h2>我的票券 - Your Tickets</h2>
+        <h2>我的票券 - Your Tickets</h2>        
         <p>{address} 買了 {inPersonTicketNFTs} 張票！</p>
         <h2>工作人員 - Staff</h2>
         <h5>contributors: {contributors.sort(() => Math.random() - 0.5).toString()}</h5>
