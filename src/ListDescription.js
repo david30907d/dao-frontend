@@ -5,30 +5,30 @@ const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3("https://opt-goerli.g.alchemy.com/v2/9TWpT42dQ5U9KsjrptwNQ2g7pbQBSpQq");
 const BN = web3.utils.BN;
 const DECIMALS = new BN('1000000000000000000');
-const addrOfTicketContract = '0xc559af4C9d97B397bd3329E081B2eb39C6bB401C';
+const addrOfTicketContract = '0xF009c625ce71F61D98f94C635B839130a8EE0f79';
 const ticketContract = new web3.eth.Contract(
   require("./Ticket.json").abi,
   addrOfTicketContract
 );
 const inPersonTicketNFT = new web3.eth.Contract(
   require("./InPersonTicketNFT.json").abi,
-  "0x2C3a0735A686cD8DB0c862B3dE13e61600201e5A"
+  "0xd5778919d9a30B083fD1D788A4A34F6F80B34ACd"
 );
 const GOHM = new web3.eth.Contract(
   require("./IERC20.json").abi,
-  "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
+  "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"
 )
 const FRAX = new web3.eth.Contract(
   require("./IERC20.json").abi,
-  "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
+  "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"
 )
 const DAI = new web3.eth.Contract(
   require("./IERC20.json").abi,
-  "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
+  "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"
 )
 const USDC = new web3.eth.Contract(
   require("./IERC20.json").abi,
-  "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
+  "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"
 )
 export default function ListDescription() {
   const contributors = ["Akira", "Wade", "YaCheng", "Pierce", "David Jr.", "Shawn"]
@@ -129,6 +129,7 @@ export default function ListDescription() {
         <ol type="lower-roman" style={{ listStyleType: 'lower-roman' }}>
           <a href="https://hackmd.io/FJlahwQTTUWahfzSWDsdaw?view">Check Details!</a>
         </ol>
+        <a href='https://github.com/orgs/consensus-dao/repositories'><img src="https://visualpharm.com/assets/624/Github-595b40b85ba036ed117dc155.svg" alt="BigCo Inc. logo" width="20" height="20" />source code</a>
         <h2>活動時間與地點 - When and Where</h2>
         <ol style={{ listStyleType: 'upper-alpha' }}>
           <li>&#9200; 時間 - 12/10 9:00 ~ 17:00</li>
