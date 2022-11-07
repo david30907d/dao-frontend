@@ -5,14 +5,14 @@ const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3("https://opt-goerli.g.alchemy.com/v2/9TWpT42dQ5U9KsjrptwNQ2g7pbQBSpQq");
 const BN = web3.utils.BN;
 const DECIMALS = new BN('1000000000000000000');
-const addrOfTicketContract = '0xF009c625ce71F61D98f94C635B839130a8EE0f79';
+const addrOfTicketContract = '0x34e2C75a4C106C74F1b8bbCAA7A525e5ECE063EC';
 const ticketContract = new web3.eth.Contract(
   require("./Ticket.json").abi,
   addrOfTicketContract
 );
 const inPersonTicketNFT = new web3.eth.Contract(
   require("./InPersonTicketNFT.json").abi,
-  "0xd5778919d9a30B083fD1D788A4A34F6F80B34ACd"
+  "0x8d9A46Fdf4EF33aBf37C8B91a7C84968A9d833f5"
 );
 const GOHM = new web3.eth.Contract(
   require("./IERC20.json").abi,
@@ -39,6 +39,7 @@ export default function ListDescription() {
   const [gohmContributorTicketPrice, setGohmContributorTicketPrice] = useState("");
   const [inPersonTicketNFTs, setInPersonTicketNFTs] = useState("");
   const [address, setAddress] = useState("");
+  const [totalTicketSold, setTotalTicketSold] = useState("");
 
   async function requestTicketPrice() {
     setUsdTicketPrice(await ticketContract.methods.usdTicketPrices("2022-in-person").call());
@@ -50,7 +51,7 @@ export default function ListDescription() {
     const { address } = await getCurrentWalletConnected();
     setAddress(address);
     // TODO: why there's no Transfer event emitted from NFT contract?
-    let events = await inPersonTicketNFT.getPastEvents("Transfer");
+    setTotalTicketSold(await inPersonTicketNFT.methods.tokenIds().call());
     setInPersonTicketNFTs(await inPersonTicketNFT.methods.balanceOf(address).call());
   }
   useEffect(requestTicketPrice, []);
@@ -149,6 +150,8 @@ export default function ListDescription() {
           <p>...</p>
         </ol>
         <h2>售票 - Ticket Office：</h2>
+        {/* hardcoded 60 for now, we can read a variable, ticketInventories, down the road! */}
+        <p>總共還剩下{60-totalTicketSold}張票！</p>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/21129/small/token_wsOHM_logo.png?1638764900" alt="BigCo Inc. logo" width="20" height="20" /> GOHM</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
           <li><button onClick={() => approve("gohm")}>Approve</button></li>
@@ -175,7 +178,7 @@ export default function ListDescription() {
         </ol>
         <h2>Join DAO!</h2>
         <a href="https://hackmd.io/FJlahwQTTUWahfzSWDsdaw?view#%E5%8A%A0%E5%85%A5-DAO-%E4%B9%8B%E5%89%8D%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%95%8F%E8%87%AA%E5%B7%B1-4-%E5%80%8B%E5%95%8F%E9%A1%8C">Click Here to Join DAO!</a>
-        <h2>我的票券 - Your Tickets</h2>        
+        <h2>我的票券 - Your Tickets</h2>
         <p>{address} 買了 {inPersonTicketNFTs} 張票！</p>
         <h2>工作人員 - Staff</h2>
         <h5>contributors: {contributors.sort(() => Math.random() - 0.5).toString()}</h5>
