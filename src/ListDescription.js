@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { getCurrentWalletConnected } from "./util/interact.js";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-const web3 = createAlchemyWeb3("https://arbitrum-mainnet.infura.io/v3/18f80354699e46188ac9b12df50f9296");
+const web3 = createAlchemyWeb3("https://arb-mainnet.g.alchemy.com/v2/Lvdw64kIQvGRlFna1U6XvWNz7tunXNuw");
 const BN = web3.utils.BN;
 const DECIMALS = 1000000000000000000;
 const ApproveDecimals = new BN('1000000000000000000');
@@ -118,7 +118,7 @@ export default function ListDescription() {
   }
   return (
     <div className="App">
-      <h1 style={{ color: 'green' }}>Consensus Conf 2022(WIP, 還在 testnet)</h1>
+      <h1 style={{ color: 'green' }}>Consensus Conf 2022 (Remember to switch to Arbitrum!)</h1>
       <h2>使命與願景 - Mission Statement</h2>
       <div style={{ display: 'inline', marginRight: '50px' }}>
         <h3 style={{ color: 'red' }}>我們將在 2030 年，做到「台灣區塊鏈的龍頭社群」，因為「現代社會對區塊鏈有很多誤解，我們希望這個 conf/DAO 能不分職業、種族、性別等等，平等地去普及各類區塊鏈知識」。</h3>
@@ -145,8 +145,7 @@ export default function ListDescription() {
           <p>...</p>
         </ol>
         <h2>售票 - Ticket Office：</h2>
-        {/* hardcoded 60 for now, we can read a variable, ticketInventories, down the road! */}
-        <p>總共還剩下{60-totalTicketSold}張票！</p>
+        <p>總共還剩下{40-totalTicketSold}張票！</p>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/21129/small/token_wsOHM_logo.png?1638764900" alt="BigCo Inc. logo" width="20" height="20" /> GOHM</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
           <li><button onClick={() => approve("gohm")}>Approve</button></li>
