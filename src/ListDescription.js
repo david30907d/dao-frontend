@@ -155,26 +155,26 @@ export default function ListDescription() {
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/21129/small/token_wsOHM_logo.png?1638764900" alt="BigCo Inc. logo" width="20" height="20" /> GOHM</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
           <li><button onClick={() => approve("gohm")}>Approve</button></li>
-          <li><button onClick={() => buyTicket("gohm", "2022-in-person")}>一般票：GOHM {gohmTicketPrice}</button></li>
-          <li><button onClick={() => buyTicket("gohm", "2022-in-person-contributor")}>貢獻票：GOHM {gohmContributorTicketPrice}</button></li>
+          <li><button onClick={() => buyTicket("gohm", "2022-in-person")}>一般票（請確保您在 Arbitrum 發起交易！）：GOHM {gohmTicketPrice}</button></li>
+          <li><button onClick={() => buyTicket("gohm", "2022-in-person-contributor")}>貢獻票（請確保您在 Arbitrum 發起交易！）：GOHM {gohmContributorTicketPrice}</button></li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/13422/small/frax_logo.png?1608476506" alt="BigCo Inc. logo" width="20" height="20" /> FRAX</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
           <li><button onClick={() => approve("frax")}>Approve</button></li>
-          <li><button onClick={() => buyTicket("frax", "2022-in-person")}>一般票：$ {usdTicketPrice}</button></li>
-          <li><button onClick={() => buyTicket("frax", "2022-in-person-contributor")}>貢獻票：$ {usdContributorTicketPrice}</button></li>
+          <li><button onClick={() => buyTicket("frax", "2022-in-person")}>一般票（請確保您在 Arbitrum 發起交易！）：$ {usdTicketPrice}</button></li>
+          <li><button onClick={() => buyTicket("frax", "2022-in-person-contributor")}>貢獻票（請確保您在 Arbitrum 發起交易！）：$ {usdContributorTicketPrice}</button></li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/9956/small/4943.png?1636636734" alt="BigCo Inc. logo" width="20" height="20" /> DAI</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
           <li><button onClick={() => approve("dai")} >Approve</button></li>
-        <li><button onClick={() => buyTicket("dai", "2022-in-person")}>一般票：$ {usdTicketPrice}</button></li>
-        <li><button onClick={() => buyTicket("dai", "2022-in-person-contributor")}>貢獻票：$ {usdContributorTicketPrice}</button></li>
+        <li><button onClick={() => buyTicket("dai", "2022-in-person")}>一般票（請確保您在 Arbitrum 發起交易！）：$ {usdTicketPrice}</button></li>
+        <li><button onClick={() => buyTicket("dai", "2022-in-person-contributor")}>貢獻票（請確保您在 Arbitrum 發起交易！）：$ {usdContributorTicketPrice}</button></li>
         </ol>
         <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389" alt="BigCo Inc. logo" width="20" height="20" /> USDC</h5>
         <ol style={{ listStyleType: 'upper-latin' }}>
           <li><button onClick={() => approve("usdc")} >Approve</button></li>
-          <li><button onClick={() => buyTicket("usdc", "2022-in-person")}>一般票：$ {usdTicketPrice}</button></li>
-          <li><button onClick={() => buyTicket("usdc", "2022-in-person-contributor")}>貢獻票：$ {usdContributorTicketPrice}</button></li>
+          <li><button onClick={() => buyTicket("usdc", "2022-in-person")}>一般票（請確保您在 Arbitrum 發起交易！）：$ {usdTicketPrice}</button></li>
+          <li><button onClick={() => buyTicket("usdc", "2022-in-person-contributor")}>貢獻票（請確保您在 Arbitrum 發起交易！）：$ {usdContributorTicketPrice}</button></li>
         </ol>
         <h2>Join DAO!</h2>
         <a href="https://hackmd.io/FJlahwQTTUWahfzSWDsdaw?view#%E5%8A%A0%E5%85%A5-DAO-%E4%B9%8B%E5%89%8D%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%95%8F%E8%87%AA%E5%B7%B1-4-%E5%80%8B%E5%95%8F%E9%A1%8C">Click Here to Join DAO!</a>
