@@ -2,30 +2,30 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { getCurrentWalletConnected } from "./util/interact.js";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-const web3 = createAlchemyWeb3("https://opt-goerli.g.alchemy.com/v2/9TWpT42dQ5U9KsjrptwNQ2g7pbQBSpQq");
+const web3 = createAlchemyWeb3("https://arbitrum-mainnet.infura.io/v3/18f80354699e46188ac9b12df50f9296");
 const BN = web3.utils.BN;
 const DECIMALS = 1000000000000000000;
 const ApproveDecimals = new BN('1000000000000000000');
-const addrOfTicketContract = '0xeC2Ad2af65Ac98711FC8e357E5b65ca94F4228Ee';
+const addrOfTicketContract = '0xEe8C4781139286c248B9E81C8ca5C850d6c2c9A7';
 const ticketContract = new web3.eth.Contract(
   require("./Ticket.json").abi,
   addrOfTicketContract
 );
 const inPersonTicketNFT = new web3.eth.Contract(
   require("./InPersonTicketNFT.json").abi,
-  "0x3543B0750c99c45E09a290e24E4a07e113C7731A"
+  "0x738fBDcf0BA9647Bf9AB56D919939fFc4d5A4f3f"
 );
 const GOHM = new web3.eth.Contract(
   require("./IERC20.json").abi,
-  "0xD635a0d726B9bd390eE9684eb758Db0bb2938E05"
+  "0x8D9bA570D6cb60C7e3e0F31343Efe75AB8E65FB1"
 )
 const FRAX = new web3.eth.Contract(
   require("./IERC20.json").abi,
-  "0xD635a0d726B9bd390eE9684eb758Db0bb2938E05"
+  "0x17FC002b466eEc40DaE837Fc4bE5c67993ddBd6F"
 )
 const DAI = new web3.eth.Contract(
   require("./IERC20.json").abi,
-  "0xD635a0d726B9bd390eE9684eb758Db0bb2938E05"
+  "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"
 )
 export default function ListDescription() {
   const contributors = ["Akira", "Wade", "YaCheng", "Pierce", "David Jr.", "Shawn", "Red", "Jacker"]
