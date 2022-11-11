@@ -31,7 +31,7 @@ const USDC = new web3.eth.Contract(
   "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"
 )
 export default function ListDescription() {
-  const contributors = ["Akira", "Wade", "YaCheng", "Pierce", "David Jr.", "Shawn"]
+  const contributors = ["Akira", "Wade", "YaCheng", "Pierce", "David Jr.", "Shawn", "Red", "Jacker"]
   const specialSupport = ['Aaron']
   const [usdTicketPrice, setUsdTicketPrice] = useState("");
   const [usdContributorTicketPrice, setUsdContributorTicketPrice] = useState("");
