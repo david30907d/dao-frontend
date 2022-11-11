@@ -125,6 +125,7 @@ export default function ListDescription() {
         <ol type="lower-roman" style={{ listStyleType: 'lower-roman' }}>
           <a href="https://hackmd.io/FJlahwQTTUWahfzSWDsdaw?view">Check Details!</a>
         </ol>
+        <a href='https://gnosis-safe.io/app/arb1:0xFBEb8FCcaDB61D4219864E80F95dc9E7DC0a1596/balances'><img src="https://pbs.twimg.com/profile_images/1566775952620900353/vRyTLmek_400x400.jpg" alt="BigCo Inc. logo" width="20" height="20" />Multi-sig of this conference</a>
         <a href='https://github.com/orgs/consensus-dao/repositories'><img src="https://visualpharm.com/assets/624/Github-595b40b85ba036ed117dc155.svg" alt="BigCo Inc. logo" width="20" height="20" />source code</a>
         <h2>活動時間與地點 - When and Where</h2>
         <ol style={{ listStyleType: 'upper-alpha' }}>
