@@ -4,31 +4,28 @@ import { getCurrentWalletConnected } from "./util/interact.js";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3("https://opt-goerli.g.alchemy.com/v2/9TWpT42dQ5U9KsjrptwNQ2g7pbQBSpQq");
 const BN = web3.utils.BN;
-const DECIMALS = new BN('1000000000000000000');
-const addrOfTicketContract = '0x34e2C75a4C106C74F1b8bbCAA7A525e5ECE063EC';
+const DECIMALS = 1000000000000000000;
+const ApproveDecimals = new BN('1000000000000000000');
+const addrOfTicketContract = '0xeC2Ad2af65Ac98711FC8e357E5b65ca94F4228Ee';
 const ticketContract = new web3.eth.Contract(
   require("./Ticket.json").abi,
   addrOfTicketContract
 );
 const inPersonTicketNFT = new web3.eth.Contract(
   require("./InPersonTicketNFT.json").abi,
-  "0x8d9A46Fdf4EF33aBf37C8B91a7C84968A9d833f5"
+  "0x3543B0750c99c45E09a290e24E4a07e113C7731A"
 );
 const GOHM = new web3.eth.Contract(
   require("./IERC20.json").abi,
-  "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"
+  "0xD635a0d726B9bd390eE9684eb758Db0bb2938E05"
 )
 const FRAX = new web3.eth.Contract(
   require("./IERC20.json").abi,
-  "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"
+  "0xD635a0d726B9bd390eE9684eb758Db0bb2938E05"
 )
 const DAI = new web3.eth.Contract(
   require("./IERC20.json").abi,
-  "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"
-)
-const USDC = new web3.eth.Contract(
-  require("./IERC20.json").abi,
-  "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"
+  "0xD635a0d726B9bd390eE9684eb758Db0bb2938E05"
 )
 export default function ListDescription() {
   const contributors = ["Akira", "Wade", "YaCheng", "Pierce", "David Jr.", "Shawn", "Red", "Jacker"]
@@ -42,10 +39,10 @@ export default function ListDescription() {
   const [totalTicketSold, setTotalTicketSold] = useState("");
 
   async function requestTicketPrice() {
-    setUsdTicketPrice(await ticketContract.methods.usdTicketPrices("2022-in-person").call());
-    setUsdContributorTicketPrice(await ticketContract.methods.usdTicketPrices("2022-in-person-contributor").call());
-    setGohmTicketPrice(await ticketContract.methods.gohmTicketPrices("2022-in-person").call());
-    setGohmContributorTicketPrice(await ticketContract.methods.gohmTicketPrices("2022-in-person-contributor").call());
+    setUsdTicketPrice((await ticketContract.methods.usdTicketPrices("2022-in-person").call()) / DECIMALS);
+    setUsdContributorTicketPrice((await ticketContract.methods.usdTicketPrices("2022-in-person-contributor").call()) / DECIMALS);
+    setGohmTicketPrice((await ticketContract.methods.gohmTicketPrices("2022-in-person").call()) / DECIMALS);
+    setGohmContributorTicketPrice((await ticketContract.methods.gohmTicketPrices("2022-in-person-contributor").call()) / DECIMALS);
   }
   async function requestUserInPersonTicketNFT() {
     const { address } = await getCurrentWalletConnected();
@@ -91,8 +88,6 @@ export default function ListDescription() {
       tokenContract = FRAX;
     } else if (tokenName == 'dai') {
       tokenContract = DAI;
-    } else if (tokenName == 'usdc') {
-      tokenContract = USDC;
     } else {
       throw `Invalid token ${tokenName}`
     }
@@ -100,7 +95,7 @@ export default function ListDescription() {
       to: tokenContract._address, // Required except during contract publications.
       from: window.ethereum.selectedAddress, // must match user's active address.
       data: tokenContract.methods
-        .approve(addrOfTicketContract, DECIMALS.mul(new BN(100)) )
+        .approve(addrOfTicketContract, ApproveDecimals.mul(new BN(100)) )
         .encodeABI(),
     };
     try {
@@ -169,12 +164,6 @@ export default function ListDescription() {
           <li><button onClick={() => approve("dai")} >Approve</button></li>
         <li><button onClick={() => buyTicket("dai", "2022-in-person")}>一般票（請確保您在 Arbitrum 發起交易！）：$ {usdTicketPrice}</button></li>
         <li><button onClick={() => buyTicket("dai", "2022-in-person-contributor")}>貢獻票（請確保您在 Arbitrum 發起交易！）：$ {usdContributorTicketPrice}</button></li>
-        </ol>
-        <h5 style={{ color: 'red' }}><img src="https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png?1547042389" alt="BigCo Inc. logo" width="20" height="20" /> USDC</h5>
-        <ol style={{ listStyleType: 'upper-latin' }}>
-          <li><button onClick={() => approve("usdc")} >Approve</button></li>
-          <li><button onClick={() => buyTicket("usdc", "2022-in-person")}>一般票（請確保您在 Arbitrum 發起交易！）：$ {usdTicketPrice}</button></li>
-          <li><button onClick={() => buyTicket("usdc", "2022-in-person-contributor")}>貢獻票（請確保您在 Arbitrum 發起交易！）：$ {usdContributorTicketPrice}</button></li>
         </ol>
         <h2>Join DAO!</h2>
         <a href="https://hackmd.io/FJlahwQTTUWahfzSWDsdaw?view#%E5%8A%A0%E5%85%A5-DAO-%E4%B9%8B%E5%89%8D%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%95%8F%E8%87%AA%E5%B7%B1-4-%E5%80%8B%E5%95%8F%E9%A1%8C">Click Here to Join DAO!</a>
