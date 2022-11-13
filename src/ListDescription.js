@@ -137,10 +137,21 @@ export default function ListDescription() {
         <a href='https://docs.google.com/forms/d/e/1FAIpQLSe9-BdV8BL1bG0G6uoopi_ftoFj55jL5OFRj5ZfIkXVjObGiw/viewform'>Google Form: Call for Papers</a>
         <h2>議程 - Program</h2>
         <ol style={{ listStyleType: 'upper-alpha' }}>
-          <li>9:00-9:30 「主題」 by XXX</li>
-          <li>9:45-10:15 「主題」 by XXX</li>
-          <li>12:00-13:00 「午餐」 by conf</li>
-          <li>13:15-14:45 「主題」 by XXX</li>
+          <li>8:30 開放報到 (AppWorks 4F)</li>
+          <li>09:00~09:30 「DAO - 新時代的 conference 形式」by David</li>
+          <li>09:40~10:10 「區塊鏈 Layer 2 解決方案簡介」 by Vincent</li>
+          <li>10:20~10:50 「ERC721RugGripper」by Justa</li>
+          <li>11:00~11:30 「Applied Zero-Knowledge Proofs for software engineers: case study」by Alex Kuzmin - </li>
+          <li>11:40~12:10 「Defi 槓桿協議」by Wade</li>
+          <li>12:10~13:10 lunch break (大會供餐）</li>
+          <li>13:10~13:40 「不需要透過網站且不用透過function即可以執行mint NFT」by Aaron</li>
+          <li>13:50~14:20 「現今支付方式比較與加密貨幣的支付解決方案」by Akira</li>
+          <li>14:30~15:00 「Aptos 上的 Vesting Wallet」by Justa</li>
+          <li>15:00~15:20 tea break</li>
+          <li>15:30~16:00 「ZK 多重宇宙」by Ray</li>
+          <li>16:10~16:30 Job Fairs</li>
+          <li>16:30~17:00 Lighting Talks</li>
+          <li>17:00~      講者跟贊助商晚宴</li>
           <p>...</p>
           <p>...</p>
           <p>...</p>
