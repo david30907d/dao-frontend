@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { getCurrentWalletConnected } from "./util/interact.js";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-const web3 = createAlchemyWeb3("https://arb-mainnet.g.alchemy.com/v2/Lvdw64kIQvGRlFna1U6XvWNz7tunXNuw");
+const web3 = createAlchemyWeb3(process.env.REACT_APP_ALCHEMY_KEY);
 const BN = web3.utils.BN;
 const DECIMALS = 1000000000000000000;
 const ApproveDecimals = new BN('1000000000000000000');
@@ -152,9 +152,6 @@ export default function ListDescription() {
           <li>16:10~16:30 Job Fairs</li>
           <li>16:30~17:00 Lighting Talks</li>
           <li>17:00~      講者跟贊助商晚宴</li>
-          <p>...</p>
-          <p>...</p>
-          <p>...</p>
         </ol>
         <h2>售票 - Ticket Office：</h2>
         <p>總共還剩下{40-totalTicketSold}張票！</p>

@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
 import { connectWallet, getCurrentWalletConnected } from "./util/interact.js";
-const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
-const web3 = createAlchemyWeb3(alchemyKey);
 
 const Minter = (props) => {
   const [walletAddress, setWallet] = useState("");
