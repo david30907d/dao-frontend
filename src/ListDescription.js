@@ -149,9 +149,10 @@ export default function ListDescription() {
           <li>14:30~15:00 「Aptos 上的 Vesting Wallet」by Justa</li>
           <li>15:00~15:20 tea break</li>
           <li>15:30~16:00 「ZK 多重宇宙」by Ray</li>
-          <li>16:10~16:30 Job Fairs</li>
-          <li>16:30~17:00 Lighting Talks</li>
-          <li>17:00~      講者跟贊助商晚宴</li>
+          <li>16:10~16:40 Job Fairs</li>
+          <li>16:40~17:10 「Teleport module on Aptos」by Rick</li>
+          <li>17:10~17:15 閉幕</li>
+          <li>17:30~      講者跟贊助商晚宴</li>
         </ol>
         <h2>售票 - Ticket Office：</h2>
         <p>總共還剩下{40-totalTicketSold}張票！</p>
