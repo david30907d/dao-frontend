@@ -142,12 +142,12 @@ export default function ListDescription() {
           <li>09:40~10:10 「區塊鏈 Layer 2 解決方案簡介」 by Vincent</li>
           <li>10:20~10:50 「ERC721RugGripper」by Justa</li>
           <li>11:00~11:30 「Applied Zero-Knowledge Proofs for software engineers: case study」by Alex Kuzmin - </li>
-          <li>11:40~12:10 「Defi 槓桿協議」by Wade</li>
-          <li>12:10~13:10 lunch break (大會供餐）</li>
-          <li>13:10~13:40 「不需要透過網站且不用透過function即可以執行mint NFT」by Aaron</li>
-          <li>13:50~14:20 「現今支付方式比較與加密貨幣的支付解決方案」by Akira</li>
-          <li>14:30~15:00 「Aptos 上的 Vesting Wallet」by Justa</li>
-          <li>15:00~15:20 tea break</li>
+          <li>11:40~12:10 「不需要透過網站且不用透過function即可以執行mint NFT」by Aaron</li>
+          <li>12:10~13:10  lunch break (大會供餐）</li>
+          <li>13:10~13:40 「現今支付方式比較與加密貨幣的支付解決方案」by Akira</li>
+          <li>13:50~14:20 「Aptos 上的 Vesting Wallet」by Justa</li>
+          <li>14:30~15:00  tea break</li>
+          <li>15:00~15:20  Lightning Talk</li>
           <li>15:30~16:00 「ZK 多重宇宙」by Ray</li>
           <li>16:10~16:40 Job Fairs</li>
           <li>16:40~17:10 「Teleport module on Aptos」by Rick</li>
