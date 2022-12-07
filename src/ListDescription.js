@@ -130,7 +130,7 @@ export default function ListDescription() {
         <h2>活動時間與地點 - When and Where</h2>
         <ol style={{ listStyleType: 'upper-alpha' }}>
           <li>&#9200; 時間 - 12/10 9:00 ~ 17:00</li>
-          <li>&#127758; 地點 - AppWorks School 4F <a href='https://goo.gl/maps/KnQecmdLGLbM9SBF9'>110台北市信義區基隆路一段178號6樓</a></li>
+          <li>&#127758; 地點 - AppWorks School 6F <a href='https://goo.gl/maps/KnQecmdLGLbM9SBF9'>110台北市信義區基隆路一段178號6樓</a></li>
           <li>&#127836; 餐點 - 供午餐 (free lunch)</li>
         </ol>
         <h2>徵稿 - Call for Papers</h2>
