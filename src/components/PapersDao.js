@@ -6,7 +6,7 @@ function PapersDao() {
           <h3>徵稿 - Call for Papers</h3>
         </div>
         <div className="btn">
-          <a href="">投稿</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9-BdV8BL1bG0G6uoopi_ftoFj55jL5OFRj5ZfIkXVjObGiw/viewform?usp=sf_link">投稿</a>
         </div>
         <div className="paper-pic">
           <img src="paperpic.png" alt="" />

@@ -13,13 +13,13 @@ function Mission() {
       <div>
         <ul>
           <li>
-            <a href="">Muti-sig (of this conference)</a>
+            <a href="https://app.safe.global/arb1:0xFBEb8FCcaDB61D4219864E80F95dc9E7DC0a1596/home">Muti-sig (of this conference)</a>
           </li>
           <li>
-            <a href="">Open Source</a>
+            <a href="https://github.com/orgs/consensus-dao/repositories">Open Source</a>
           </li>
           <li>
-            <a href=""> LitePaper</a>
+            <a href="https://hackmd.io/FJlahwQTTUWahfzSWDsdaw?view"> LitePaper</a>
           </li>
         </ul>
       </div>
