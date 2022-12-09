@@ -1,38 +1,680 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 全域 border box */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+.container {
+  max-width: 1400px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin: 0 auto;
+}
+/* CSS Reset end */
 .App {
+  background: linear-gradient(105.95deg, #ffffff 1.48%, #ffef97 51.28%, #adfbff 96.15%, #adfbff 96.15%);
+  color: #111111;
+}
+.ml-2 {
+  margin-left: 14px;
+}
+.mb-1 {
+  margin-bottom: 7px;
+}
+
+.mb-2 {
+  margin-bottom: 14px;
+}
+.mb-4 {
+  margin-bottom: 28px;
+}
+
+.mb-9 {
+  margin-bottom: 63px;
+}
+
+.mr-2 {
+  margin-right: 2px;
+}
+
+.mr-14 {
+  margin-right: 14px;
+}
+.pl-2 {
+  padding-left: 14px;
+}
+.pl-5 {
+  padding-left: 35px;
+}
+
+.pl-11 {
+  padding-left: 77px;
+}
+.pb-6 {
+  padding-bottom: 42px;
+}
+
+.pb-28 {
+  padding-bottom: 196px;
+}
+.pr-2 {
+  padding-right: 14px;
+}
+
+.pr-5 {
+  padding-right: 35px;
+}
+
+.pr-10 {
+  padding-right: 70px;
+}
+
+.font {
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19.6px;
+  line-height: 27px;
+  letter-spacing: 0.05em;
+  color: #000000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 60px;
+  margin-bottom: 24px;
+}
+
+.menu {
+  display: flex;
+}
+
+.list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0px 16px;
+  margin-right: 20px;
+  gap: 16px;
+
+  background: #111111;
+  border-radius: 200px;
+
+  width: 926px;
+  height: 64px;
+}
+
+.list li a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.list li a:hover {
+  color: #d9f75b;
+}
+
+.wallet-Btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 32px;
+  gap: 8px;
+
+  width: 220px;
+  height: 64px;
+
+  background: #ffffff;
+  border: 2px solid #98fff1;
+  border-radius: 40px;
+
+  text-decoration: none;
+  color: #111111;
+}
+
+.wallet-Btn:hover {
+  background: #55f6d9;
+  color: #111111;
+}
+
+.switch-Btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 32px;
+  gap: 8px;
+
+  width: 301px;
+  height: 64px;
+
+  background: #ffffff;
+  border: 2px solid #98fff1;
+  border-radius: 40px;
+
+  text-decoration: none;
+  color: #111111;
+}
+
+.switch-Btn:hover {
+  background: #55f6d9;
+  color: #111111;
+}
+
+.section {
+  padding: 40px;
+  border-radius: 50px;
+
+  background: linear-gradient(
+    93.87deg,
+    rgba(235, 235, 235, 0.6) 6.19%,
+    rgba(251, 251, 251, 0.6) 36.85%,
+    rgba(251, 251, 251, 0.6) 65.62%,
+    rgba(235, 235, 235, 0.6) 96.76%
+  );
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title h3 {
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 49px;
+  color: #111111;
+}
+
+.ticket .title p {
+  width: 215px;
+  height: 45px;
+
+  background: #1eb5a1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: 1;
+  flex-grow: 0;
+
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19.6px;
+  line-height: 27px;
+  letter-spacing: 0.1em;
+
+  color: #ffffff;
+}
+
+.content {
+  display: flex;
+  justify-content: start;
+}
+
+.content-item {
+  border-right: 1px solid #999999;
+}
+
+.content h5 {
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 8px;
+
+  border: 1px solid #111111;
+  border-radius: 50px;
+  margin-bottom: 15px;
+}
+
+.ticket-step1 h5 {
+  width: 390px;
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 19.6px;
+  line-height: 27px;
+  letter-spacing: 0.1em;
+}
+
+.ticket-step2 h5 {
+  width: 250px;
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 19.6px;
+  line-height: 27px;
+  letter-spacing: 0.1em;
+}
+
+.ticket-step3 h5 {
+  width: 270px;
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 19.6px;
+  line-height: 27px;
+  letter-spacing: 0.1em;
+}
+.ticket-step1 ul li {
+  display: flex;
+  align-items: center;
+}
+
+.ticket-step3 ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ticket-step3 ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border: 2px solid #d9f75b;
+  border-radius: 40px;
+
+  width: 180px;
+  height: 48px;
+}
+
+.ticket-step3 ul li .contibute {
+  border: 2px solid rgba(237, 174, 83, 1);
+}
+
+.ticket-step3 .leftTic {
+  text-align: end;
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: right;
+  letter-spacing: 0.05em;
+}
+
+.radio-btn {
+  display: flex;
+  justify-content: space-around;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.radio-btn label p {
+  display: bolck;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.mission .state {
+  margin-left: 350px;
+  padding: 51px 270px 52px 47px;
+  width: 910px;
+  height: 322px;
+
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    linear-gradient(279.67deg, #66ccff 22.67%, #e98fbd 64.16%);
+  border-radius: 32px;
+
+  color: rgba(255, 255, 255, 1);
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 45px;
+  /* or 141% */
+
+  color: #ffffff;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.mission ul {
+  margin-left: 350px;
+  padding: 0 100px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+
+  text-align: center;
+  text-decoration-line: underline;
+}
+.mission ul li a {
+  color: #111111;
+}
+
+.mission .eye-img {
+  position: absolute;
+  width: 280px;
+  height: 251.15px;
+  left: 255px;
+  top: 2500px;
+}
+.place {
+  padding: 140px 80px 50px;
+}
+
+.place .title div ul li {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 40px;
+  margin-bottom: 30px;
+  color: #111111;
+}
+.place .map img {
+  height: 420px;
+  width: 540px;
+}
+
+.place .cloud1 {
+  position: absolute;
+  top: 0px;
+}
+
+.place .cloud2 {
+  position: absolute;
+  bottom: 0px;
+}
+
+.programs ul li {
+  display: flex;
+  align-items: center;
+}
+
+.programs ul li .zone {
+  padding-left: 55px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 33px;
+
+  color: #d57f00;
+}
+
+.programs ul li .time {
+  margin-right: 16px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 20px;
+
+  border: 2px solid #96eeff;
+  border-radius: 50px;
+
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 40px;
+  color: #111111;
 }
 
-.App-link {
-  color: #61dafb;
+.programs ul li .event {
+  margin-right: 16px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 20px;
+  background: linear-gradient(90deg, #ffe896 0%, #fff848 100%);
+  border-radius: 50px;
+
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 40px;
+  color: #111111;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.programs ul li .topic {
+  margin-right: 16px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 20px;
+  background: linear-gradient(90deg, #96efff 0%, #48e2ff 100%);
+  border-radius: 50px;
+
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 40px;
+  color: #111111;
+}
+
+.programs ul li img {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 23px;
+  padding-right: 5px;
+}
+
+.programs ul li .name {
+  border: 0px;
+  padding-bottom: 23px;
+  padding-right: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 40px;
+  color: #111111;
+}
+
+.programs .tree img {
+  position: absolute;
+  top: 4550px;
+  right: 300px;
+}
+
+.papers-dao {
+  display: flex;
+  justify-content: space-between;
+}
+
+.papers-dao .papers,
+.papers-dao .dao {
+  width: 650px;
+}
+
+.papers-dao .btn {
+  font-family: "Avenir";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19.6px;
+  line-height: 27px;
+  letter-spacing: 0.05em;
+  color: #111111;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 32px;
+  max-width: 180px;
+  gap: 8px;
+
+  background: #ffffff;
+  border: 2px solid #98fff1;
+  border-radius: 40px;
+}
+
+.papers-dao .papers .paper-pic img {
+  position: absolute;
+  top: 5510px;
+  left: 550px;
+}
+
+.papers-dao .dao .dao-pic img {
+  position: absolute;
+  left: 1315px;
+  top: 5510px;
+}
+
+.place-background-border {
+  margin: auto;
+  margin-bottom: 63px;
+  width: fit-content;
+  background: linear-gradient(263.38deg, #ffffff 0%, #adfbff 49.1%, #ffef97 99.23%);
+  padding: 10px;
+  border-radius: 60px;
+}
+
+.section-container {
+  position: relative;
 }
