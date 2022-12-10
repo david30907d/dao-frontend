@@ -44,53 +44,53 @@ function Programs() {
           <p className="event">Lunch break</p>
         </li>
         <li>
-          <p className="time">12:45~13:15</p>
+          <p className="time">13:00~13:30</p>
           <p className="topic">不需要透過網站且不用透過function即可以執行mint NFT</p>
           <img src="mic.png" alt="" />
           <p className="name">Aaron</p>
         </li>
         <li>
-          <p className="time">13:25~13:55</p>
+          <p className="time">13:40~14:10</p>
           <p className="topic">Aptos 上的 Vesting Wallet</p>
           <img src="mic.png" alt="" />
           <p className="name">Justa</p>
         </li>
         <li>
-          <p className="time">14:05~14:35</p>
+          <p className="time">14:20~14:50</p>
           <p className="topic">現今支付方式比較與加密貨幣的支付解決方案</p>
           <img src="mic.png" alt="" />
           <p className="name">Akira</p>
         </li>
         <li>
-          <p className="time">14:45~15:15</p>
+          <p className="time">15:00~15:30</p>
           <p className="event">Tea Break</p>
         </li>
         <li>
-          <p className="time">15:25~15:55</p>
+          <p className="time">15:40~16:10</p>
           <p className="topic">Lightning Talk</p>
         </li>
         <li>
-          <p className="time">16:05~16:35</p>
+          <p className="time">16:20~16:50</p>
           <p className="topic">ZK 多重宇宙</p>
           <img src="mic.png" alt="" />
           <p className="name">Ray</p>
         </li>
         <li>
-          <p className="time">16:45~17:15</p>
+          <p className="time">17:00~17:30</p>
           <p className="event">Job Fairs</p>
         </li>
         <li>
-          <p className="time">17:15~17:45</p>
+          <p className="time">17:30~18:00</p>
           <p className="topic">Teleport module on Aptos</p>
           <img src="mic.png" alt="" />
           <p className="name">Rick</p>
         </li>
         <li>
-          <p className="time">17:45~17:50</p>
+          <p className="time">18:00~18:05</p>
           <p className="topic">Closing</p>
         </li>
         <li className="pb-28">
-          <p className="time">17:50</p>
+          <p className="time">~</p>
           <p className="event">Dinner party for speakers and sponsers</p>
         </li>
       </ul>
