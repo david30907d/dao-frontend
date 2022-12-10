@@ -67,7 +67,7 @@ function Programs() {
         </li>
         <li>
           <p className="time">15:40~16:10</p>
-          <p className="topic">Lightning Talk</p>
+          <p className="topic">Open Mic</p>
         </li>
         <li>
           <p className="time">16:20~16:50</p>
