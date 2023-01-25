@@ -12,7 +12,7 @@ const inPersonTicketNFT = new web3.eth.Contract(
   require("./InPersonTicketNFT.json").abi,
   "0xA0C18fAd7e7951497Aef46c5559F84Dbad4b9E50"
 );
-const GOHM = new web3.eth.Contract(require("./IERC20.json").abi, "0xEe8C4781139286c248B9E81C8ca5C850d6c2c9A7");
+const GOHM = new web3.eth.Contract(require("./IERC20.json").abi, "0x8D9bA570D6cb60C7e3e0F31343Efe75AB8E65FB1");
 const FRAX = new web3.eth.Contract(require("./IERC20.json").abi, "0x17FC002b466eEc40DaE837Fc4bE5c67993ddBd6F");
 const DAI = new web3.eth.Contract(require("./IERC20.json").abi, "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1");
 export default function ListDescription() {
