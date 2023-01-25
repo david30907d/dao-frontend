@@ -6,11 +6,11 @@ const web3 = createAlchemyWeb3(process.env.REACT_APP_ALCHEMY_KEY);
 const BN = web3.utils.BN;
 const DECIMALS = 1000000000000000000;
 const ApproveDecimals = new BN("1000000000000000000");
-const addrOfTicketContract = "0x8f1e1903E4D7D5B5eE3a5c67e2Cbf373121bf922";
+const addrOfTicketContract = "0xEe8C4781139286c248B9E81C8ca5C850d6c2c9A7";
 const ticketContract = new web3.eth.Contract(require("./Ticket.json").abi, addrOfTicketContract);
 const inPersonTicketNFT = new web3.eth.Contract(
   require("./InPersonTicketNFT.json").abi,
-  "0xA0C18fAd7e7951497Aef46c5559F84Dbad4b9E50"
+  "0x738fBDcf0BA9647Bf9AB56D919939fFc4d5A4f3f"
 );
 const GOHM = new web3.eth.Contract(require("./IERC20.json").abi, "0x8D9bA570D6cb60C7e3e0F31343Efe75AB8E65FB1");
 const FRAX = new web3.eth.Contract(require("./IERC20.json").abi, "0x17FC002b466eEc40DaE837Fc4bE5c67993ddBd6F");
