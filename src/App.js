@@ -11,15 +11,15 @@ import PapersDao from "./components/PapersDao";
 function App() {
   return (
     <div className="App">
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar>
       <Banner></Banner>
       <Ticket></Ticket>
       <Mission></Mission>
       <Place></Place>
       <Programs></Programs>
-      <PapersDao></PapersDao>
-      {/* <Minter></Minter>
-      <ListDescription></ListDescription> */}
+      <PapersDao></PapersDao> */}
+      <Minter></Minter>
+      <ListDescription></ListDescription>
     </div>
   );
 }
