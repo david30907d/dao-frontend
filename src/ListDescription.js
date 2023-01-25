@@ -47,7 +47,7 @@ export default function ListDescription() {
     const transactionParameters = {
       to: addrOfTicketContract, // Required except during contract publications.
       from: window.ethereum.selectedAddress, // must match user's active address.
-      data: ticketContract.methods.buyTicket(tokenName, ticketName, true).encodeABI(),
+      data: ticketContract.methods.buyTicket(tokenName, ticketName, ((tokenName === 'gohm') ? false : true)).encodeABI(),
     };
     try {
       const txHash = await window.ethereum.request({
